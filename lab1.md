@@ -53,6 +53,8 @@ oc get pods -w -n userXX-kafka
 
 #### Étape 3:  Validation de l'installation
 
+Les outils Kafka disponible avec la distribution standard de Kafka sont disponible en conteneur dans le registre Red Hat pour être executés sur OpenShift.
+
 Avec le client OpenShift, demarrer dans deux fenêtres differentes un producteur et un consommateur:
 
 Producteur:
