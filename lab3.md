@@ -19,8 +19,7 @@ replicas: 3
 
 ![Topic YAML](images/lab3-replication-02.png)
 
-Le nouveau Topic demo-2 apparait dans la liste des topics disponible. 
-Le topic "my-topic" devrait aussi être présent. Ce topic a été créé automatiquement lors du lab 1.  L'operator a detecté le changement de configuration et à ajouter le topic à la liste des topics disponible. 
+Le nouveau Topic demo-3 apparait dans la liste des topics disponible. 
 
 ![Topic Liste](images/lab3-replication-03.png)
 
@@ -31,6 +30,9 @@ oc exec my-cluster-zookeeper-0 -it -- bin/kafka-topics.sh --zookeeper localhost:
 ```
 
 Cette commande execute l'utilitaire kafka-topics à l'intérieur du conteneur zookeeper
+
+
+
 
 #### Étape 2: Réplication 
 
