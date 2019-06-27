@@ -29,3 +29,21 @@ Examiner le fichier YAML. Ce fichier est utilisé par l'opérateur pour configur
 5)  Operators additionnels a déployer
 
 Pour le lab, les paramêtres par défaut seront utilisés
+
+Pour créer le cluster, utiliser le bouton "Create"
+
+L'opéator AMQ Streams démarre le processus de création de votre cluster Kafka:
+
+![Catalog](images/lab1-install-05.png)
+
+Attendre que le cluster Kafka démarrre.   
+
+![Catalog](images/lab1-install-06.png)
+
+Pour valider l'état du cluster, dans la console OpenShift, selectionner le menu Pod, dans votre projet (userXX-kafka). 
+Attendre que les 7 pods du cluster Kafka soient 'Running' et 'Ready'
+
+ou avec l'outil ligne de commande oc:
+```
+oc get pods -w -n userXX-kafka
+```
