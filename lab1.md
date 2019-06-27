@@ -23,7 +23,7 @@ Créer un cluster Kafka (bouton "Create")
 
 Examiner le fichier YAML. Ce fichier est utilisé par l'opérateur pour configurer et installer le cluster Kafka.
 
-![Catalog](images/lab1-install-04.png)
+![Operator Config](images/lab1-install-04.png)
 
 1)  Nom du cluster et projet dans lequel il sera installé.
 2)  Définition des 'listeners' qui seront déployés (Interne au cluster, externe, encryption ou non) et nombre de brokers Kafka
@@ -52,3 +52,26 @@ oc get pods -w -n userXX-kafka
 ```
 
 #### Étape 3:  Validation de l'installation
+
+Avec le client OpenShift, demarrer dans deux fenêtres differentes un producteur et un consommateur:
+
+Producteur:
+
+```
+oc project userXX-kafka
+
+oc run kafka-producer -ti --image=registry.access.redhat.com/amq7/amq-streams-kafka:1.1.0-kafka-2.1.1 --rm=true --restart=Never -- bin/kafka-console-producer.sh --broker-list my-cluster-kafka-bootstrap:9092 --topic my-topic 
+```
+
+
+Consommateur:
+```
+oc run kafka-consumer -ti --image=registry.access.redhat.com/amq7/amq-streams-kafka:1.1.0-kafka-2.1.1 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 --topic my-topic --from-beginning
+```
+
+Le producteur est un "console" producer, un client Kafka qui envoie tous les messages entrer dans la console dans un topic kafka.
+Entrez un message dans la console du producteur, le message devrait être affiché dans la fenêtre du consommateur.
+
+![Kafka Test](images/lab1-kafka-test.png)
+
+
