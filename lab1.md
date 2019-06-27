@@ -1,8 +1,11 @@
-Installation d'un cluster Kafka avec l'opérateur AMQ Streams
+## Installation d'un cluster Kafka avec l'opérateur AMQ Streams
 
-##### Étape 1:  Connection au cluster OpenShift
+#### Étape 1:  Connection au cluster OpenShift
 
-##### Étape 2:  Création d'un cluster Kafka
+Connection au cluster OpenShift avec l'usager et password fournit durant l'atelier.
+
+
+#### Étape 2:  Création d'un cluster Kafka
 
 L'opérateur AMQ Streams a été installé par l'administrateur du cluster et est disponible pour votre projet.
 
@@ -48,4 +51,4 @@ ou avec l'outil ligne de commande oc:
 oc get pods -w -n userXX-kafka
 ```
 
-##### Étape 3:  Validation de l'installation
+#### Étape 3:  Validation de l'installation
