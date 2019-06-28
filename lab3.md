@@ -13,9 +13,9 @@ Dans la console OpenShift
 ![Console](images/lab2-partitions-01.png)
 
 Dans la page de configuration du topic, utiliser les paramêtres suivants:
-name:  demo-3
-partitions: 3
-replicas: 3
+* name:  demo-3
+* partitions: 3
+* replicas: 3
 
 ![Topic YAML](images/lab3-replication-02.png)
 
