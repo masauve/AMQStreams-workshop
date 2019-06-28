@@ -2,7 +2,7 @@
 
 #### Étape 1:  Création du Topic Kafka
 
-En utilisant l'operator AMQ Streams, créer un topic Kafka nommer "demo-2" avec 3 partitions et 3 replicas:
+En utilisant l'operator AMQ Streams, créer un topic Kafka nommer "demo-3" avec 3 partitions et 3 replicas:
 
 Dans la console OpenShift
 
