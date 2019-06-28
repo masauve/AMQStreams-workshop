@@ -56,15 +56,54 @@ oc exec -i -c kafka my-cluster-kafka-0 -- curl -X POST \
 EOF
 ```
 
+![Kafka Connect API](images/kafka-connect-api.png)
+
+* 1) Appel de l'API kafka connect à partir du broker kafka. Kafka-Connect par défaut, n'est pas exposé aux clients externes
+* 2) Utilisation du plugin debezium pour MySQL
+* 3) Configuration de la base de données et serveur à utiliser comme source d'événment. Les modifications et créations seront publiés dans un topic kafka indépendent pour chaque table (SERVER.DB.TABLE).
+
+
+
 #### Étape 4 : Exécution de Kafka-Connect
 
+Dans une fenêtre Terminal, ouvrir un consumer kafka sur le topic: dbserver1.inventory.customers   
+Ce topic est automatiquement créé par Kafka Connect
 
+```
 oc run kafka-consumer -ti --image=registry.access.redhat.com/amq7/amq-streams-kafka:1.1.0-kafka-2.1.1 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092     --property print.key=true --topic dbserver1.inventory.customers --from-beginning
+```
 
+Dans la console Openshift, ouvrir un terminal à l'intérieur du Pod MySql:
 
+![MySQL](images/lab5-connect-05.png)
+
+* Project: userXX-kafka
+* Workloads: Pods
+* MySQL pod
+* Terminal Tab
+
+Dans le terminal, effectuer la connection à MySQl avec le client mysql installé dans le conteneur:
+
+```
 mysql -u mysqluser -p 
-mysqlpw
+```
 
+* password: mysqlpw
+
+Sélectionner la base de données "Inventory":
+
+```
 use inventory;
+```
 
+Insérer des données (par example):
+
+```
 insert into customers values (null,'Martin', 'Sauve', 'me@me.com');
+```
+
+
+Le contenu de la BD devrait être automatiquement envoyé par Kafka-Connect sur le topic Kafka (dbserver1.inventory.customers)
+
+![resultat](images/lab5-connect-res.png)
+
