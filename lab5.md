@@ -105,5 +105,5 @@ insert into customers values (null,'Martin', 'Sauve', 'me@me.com');
 
 Le contenu de la BD devrait être automatiquement envoyé par Kafka-Connect sur le topic Kafka (dbserver1.inventory.customers)
 
-![resultat](images/lab5-connect-res.png)
+![resultat](images/lab5-connect-red.png)
 
