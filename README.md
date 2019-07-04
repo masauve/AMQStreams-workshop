@@ -5,3 +5,9 @@
 * Lab 03 - [Réplication](lab3.md)
 * Lab 04 - [Consumers et Consumer Groups](lab4.md)
 * Lab 05 - [Kafka Connect](lab5.md)
+
+
+Console:  https://console-openshift-console.apps.mpc.myocp.net
+API:      https://api.mpc.myocp.net:6443
+
+
