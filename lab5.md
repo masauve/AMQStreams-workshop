@@ -106,7 +106,7 @@ oc run kafka-consumer -ti --image=registry.access.redhat.com/amq7/amq-streams-ka
 
 Dans la console Openshift, ouvrir un terminal à l'intérieur du Pod MySql:
 
-![MySQL](images/lab5-connect-05.png)
+![MySQL](images/lab5-connect-04.png)
 
 * Project: userXX-kafka
 * Workloads: Pods
