@@ -7,7 +7,9 @@
 * Lab 05 - [Kafka Connect](lab5.md)
 
 
-Console:  https://console-openshift-console.apps.mpc.myocp.net
-API:      https://api.mpc.myocp.net:6443
+* Console:  https://console-openshift-console.apps.mpc.myocp.net
+* API:      https://api.mpc.myocp.net:6443
 
-
+* Users:  devXX  
+* Password: devXX
+* Local_users
