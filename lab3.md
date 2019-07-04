@@ -6,7 +6,7 @@ En utilisant l'operator AMQ Streams, créer un topic Kafka nommer "demo-3" avec 
 
 Dans la console OpenShift
 
-1) Sélectionner le project userXX-kafka
+1) Sélectionner le project kafka-devXX
 2) Sélectionner "Installed Operators" dans le menu de gauche
 3) Créer un nouveau Topic avec le bouton "Create New"
 

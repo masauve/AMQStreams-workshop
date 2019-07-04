@@ -48,7 +48,7 @@ Attendre que les 7 pods du cluster Kafka soient 'Running' et 'Ready'
 
 ou avec l'outil ligne de commande oc:
 ```
-oc get pods -w -n userXX-kafka
+oc get pods -w -n kafka-devXX
 ```
 
 #### Étape 3:  Validation de l'installation
