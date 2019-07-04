@@ -29,10 +29,39 @@ oc set env dc/mysql MYSQL_ROOT_PASSWORD=debezium  MYSQL_USER=mysqluser MYSQL_PAS
 
 #### Étape 3 : Création d'un connecteur avec l'API Kafka Connect
 
-Exécuter le script suivant dans une fenêtre "Terminal" pour créer une source d'événements Kafka-Connect.
+Exécuter le script suivant (MacOS, Bash ou Linux) dans une fenêtre "Terminal" pour créer une source d'événements Kafka-Connect.
 
 ```
 oc exec -i -c kafka my-cluster-kafka-0 -- curl -X POST \
+    -H "Accept:application/json" \
+    -H "Content-Type:application/json" \
+    http://my-connect-cluster-connect-api:8083/connectors -d @- <<'EOF'
+
+{
+    "name": "inventory-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+        "tasks.max": "1",
+        "database.hostname": "mysql",
+        "database.port": "3306",
+        "database.user": "debezium",
+        "database.password": "dbz",
+        "database.server.id": "184054",
+        "database.server.name": "dbserver1",
+        "database.whitelist": "inventory",
+        "database.history.kafka.bootstrap.servers": "my-cluster-kafka-bootstrap:9092",
+        "database.history.kafka.topic": "schema-changes.inventory"
+    }
+}
+EOF
+```
+
+Pour les environnements Windows, utiliser la procédure suivante:
+
+```
+oc rsh my-cluster-kafka-0
+
+curl -X POST \
     -H "Accept:application/json" \
     -H "Content-Type:application/json" \
     http://my-connect-cluster-connect-api:8083/connectors -d @- <<'EOF'
