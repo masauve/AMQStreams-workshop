@@ -85,6 +85,8 @@ curl -X POST \
 EOF
 ```
 
+##### Explication des paramêtres
+
 ![Kafka Connect API](images/kafka-connect-api.png)
 
 * 1) Appel de l'API kafka connect à partir du broker kafka. Kafka-Connect par défaut, n'est pas exposé aux clients externes
