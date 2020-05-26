@@ -24,13 +24,51 @@ type: Opaque
 ```
 
 ```
-oc apply -f TBD
+oc apply -f https://raw.githubusercontent.com/masauve/AMQStreams-workshop/master/manifests/my-sql-credentials.yaml
 ```
 
 
-En utilisant l'operator AMQ Streams, créer un cluster Kafka Connect:
+En utilisant l'operator AMQ Streams, créer un cluster Kafka Connect.
 
-![Kafka Connect](images/lab5-connect-01.png)
+```
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaConnect
+metadata:
+  name: my-connect-cluster
+  annotations:
+  # use-connector-resources configures this KafkaConnect
+  # to use KafkaConnector resources to avoid
+  # needing to call the Connect REST API directly
+    strimzi.io/use-connector-resources: "true"
+spec:
+  image: quay.io/msauve/kafkaconnect
+  replicas: 1
+  bootstrapServers: my-cluster-kafka-bootstrap:9093
+  tls:
+    trustedCertificates:
+      - secretName: production-ready-cluster-ca-cert
+        certificate: ca.crt
+  config:
+    config.storage.replication.factor: 1
+    offset.storage.replication.factor: 1
+    status.storage.replication.factor: 1
+    config.providers: file
+    config.providers.file.class: org.apache.kafka.common.config.provider.FileConfigProvider
+  externalConfiguration:
+    volumes:
+      - name: connector-config
+        secret:
+          secretName: my-sql-credentials
+```
+```
+oc apply -f https://raw.githubusercontent.com/masauve/AMQStreams-workshop/master/manifests/kafka-connect.yaml
+```
+Attendez que le pods Kafka Connect soit démarrer:
+
+```
+oc get pods 
+```
+
 
 Dans la spécification YAML de votre cluster Kafka Connect, ajouter la source de l'image du conteneur.
 Des plugins nécessaires à cet exercice ont été ajouté à la configuration de Kafka Connect. Attention au espace, ils sont important
