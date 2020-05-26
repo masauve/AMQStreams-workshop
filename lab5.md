@@ -3,7 +3,7 @@
 
 #### Étape 1: Installation d'une base de données
 
-dans votre project OpenShift déployer une base de données MySql
+dans votre projet OpenShift déployer une base de données MySql
 
 ```
 oc new-app --name=mysql debezium/example-mysql:0.9
