@@ -10,10 +10,10 @@ metadata:
 spec:
   image: quay.io/msauve/kafkaconnect
   replicas: 1
-  bootstrapServers: my-cluster-kafka-bootstrap:9093
+  bootstrapServers: production-ready-kafka-bootstrap:9093
   tls:
     trustedCertificates:
-      - secretName: my-cluster-cluster-ca-cert
+      - secretName: production-ready-cluster-ca-cert
         certificate: ca.crt
   config:
     config.storage.replication.factor: 1

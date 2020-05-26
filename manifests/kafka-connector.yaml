@@ -15,6 +15,6 @@ spec:
     database.server.id: "184054"
     database.server.name: "dbserver1"
     database.whitelist: "inventory"
-    database.history.kafka.bootstrap.servers: "my-cluster-kafka-bootstrap:9092"
+    database.history.kafka.bootstrap.servers: "production-ready-kafka-bootstrap:9092"
     database.history.kafka.topic: "schema-changes.inventory"
     include.schema.changes: "true" 
