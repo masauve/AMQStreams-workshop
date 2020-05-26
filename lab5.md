@@ -1,6 +1,32 @@
 ## Kafka Connect
 
-#### Étape 1:  Création du Cluster Kafka Connect
+
+#### Étape 1: Installation d'une base de données
+
+dans votre project OpenShift déployer une base de données MySql
+oc new-app --name=mysql debezium/example-mysql:0.9
+
+oc set env dc/mysql MYSQL_ROOT_PASSWORD=debezium  MYSQL_USER=mysqluser MYSQL_PASSWORD=mysqlpw
+
+
+
+#### Étape 2:  Création du Cluster Kafka Connect
+
+Créer un secret Kubernetes avec les informations de connectivité pour la base de données MySqL:
+```
+apiVersion: v1
+data:
+  debezium-mysql-credentials.properties: bXlzcWxfdXNlcm5hbWU6IGRlYmV6aXVtCm15c3FsX3Bhc3N3b3JkOiBkYnoK
+kind: Secret
+metadata:
+  name: my-sql-credentials
+type: Opaque
+```
+
+```
+oc apply -f TBD
+```
+
 
 En utilisant l'operator AMQ Streams, créer un cluster Kafka Connect:
 
@@ -18,14 +44,6 @@ Des plugins nécessaires à cet exercice ont été ajouté à la configuration d
 Créer le Cluster Kafka-Connect et attender que le pod soit prêt et déployé.
 
 ![Kafka Connect](images/lab5-connect-03.png)
-
-#### Étape 2: Installation d'une base de données
-
-
-oc new-app --name=mysql debezium/example-mysql:0.9
-
-oc set env dc/mysql MYSQL_ROOT_PASSWORD=debezium  MYSQL_USER=mysqluser MYSQL_PASSWORD=mysqlpw
-
 
 #### Étape 3 : Création d'un connecteur avec l'API Kafka Connect
 
