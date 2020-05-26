@@ -4,10 +4,12 @@
 #### Étape 1: Installation d'une base de données
 
 dans votre project OpenShift déployer une base de données MySql
+
+```
 oc new-app --name=mysql debezium/example-mysql:0.9
 
 oc set env dc/mysql MYSQL_ROOT_PASSWORD=debezium  MYSQL_USER=mysqluser MYSQL_PASSWORD=mysqlpw
-
+```
 
 
 #### Étape 2:  Création du Cluster Kafka Connect
@@ -104,9 +106,15 @@ oc apply -f https://raw.githubusercontent.com/masauve/AMQStreams-workshop/master
 
 #### Étape 3 : Tester l'installation du connecteur
 
+Le connecteur devrait avoir créer plusieurs Topics sur votre cluster Kafka. Ces topics représentent la structure de votre base de données:
+
+[Kafka Connect](images/topics-kc.png)
+
+
+Ouvrir un client Kafka sur le topic inventory.customers:
 
 ```
-oc run kafka-consumer -ti --image=registry.access.redhat.com/amq7/amq-streams-kafka:1.1.0-kafka-2.1.1 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092     --property print.key=true --topic dbserver1.inventory.customers --from-beginning
+oc run kafka-consumer -ti --image=registry.access.redhat.com/amq7/amq-streams-kafka:1.1.0-kafka-2.1.1 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server production-ready-kafka-bootstrap:9092     --property print.key=true --topic dbserver1.inventory.customers --from-beginning
 ```
 
 Dans la console Openshift, ouvrir un terminal à l'intérieur du Pod MySql:
