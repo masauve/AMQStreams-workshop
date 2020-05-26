@@ -70,7 +70,7 @@ Attendez que le pods Kafka Connect soit démarrer:
 ```
 oc get pods 
 ```
-[Kafka Connect](images/ss-running-pods.png)
+![Kafka Connect](images/ss-running-pods.png)
 
 
 #### Étape 3 : Création d'un connecteur Kafka Connect avec l'Operator AMQStreams
@@ -108,7 +108,7 @@ oc apply -f https://raw.githubusercontent.com/masauve/AMQStreams-workshop/master
 
 Le connecteur devrait avoir créer plusieurs Topics sur votre cluster Kafka. Ces topics représentent la structure de votre base de données:
 
-[Kafka Connect](images/topics-kc.png)
+![Kafka Connect](images/topics-kc.png)
 
 
 Ouvrir un client Kafka sur le topic inventory.customers:
@@ -121,7 +121,7 @@ Dans la console Openshift, ouvrir un terminal à l'intérieur du Pod MySql:
 
 ![MySQL](images/lab5-connect-04.png)
 
-* Project: userXX-kafka
+* Project: votre projet
 * Workloads: Pods
 * MySQL pod
 * Terminal Tab
